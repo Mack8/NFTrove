@@ -1,0 +1,63 @@
+﻿@model NFTrove.Application.DTOs.ClienteDTO
+@using NFTrove.Application.DTOs
+
+@{
+    ViewData["Title"] = "Edit";
+    List<PaisDTO> paises = ViewData["Paises"] as List<PaisDTO>;
+}
+
+<h1>Editar Cliente</h1>
+
+<hr />
+<div class="row justify-content-center">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Identificacion" class="control-label"></label>
+                <input asp-for="Identificacion" class="form-control" />
+                <span asp-validation-for="Identificacion" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Nombre" class="control-label"></label>
+                <input asp-for="Nombre" class="form-control" />
+                <span asp-validation-for="Nombre" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Apellidos" class="control-label"></label>
+                <input asp-for="Apellidos" class="form-control" />
+                <span asp-validation-for="Apellidos" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CorreoElectronico" class="control-label"></label>
+                <input asp-for="CorreoElectronico" class="form-control" />
+                <span asp-validation-for="CorreoElectronico" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PaisID" class="control-label"></label>
+                <select asp-for="PaisID" class="form-control">
+                    @foreach (var pais in ViewBag.Paises as List<PaisDTO>)
+                    {
+                        <option value="@pais.ID">@pais.Descripcion</option>
+                    }
+                </select>
+                <span asp-validation-for="PaisID" class="text-danger"></span>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-md-6 text-left">
+                    <input type="submit" value="Save" class="btn btn-primary btn-block" />
+                </div>
+                <div class="col-md-6 text-right">
+                    <a asp-action="Index" class="btn btn-secondary btn-block"> Back </a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
