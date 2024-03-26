@@ -36,7 +36,7 @@ builder.Services.AddTransient<IRepositoryTarjeta, RepositoryTarjeta>();
 builder.Services.AddTransient<IServiceTarjeta, ServiceTarjeta>();
 builder.Services.AddTransient<IRepositoryPais, RepositoryPais>();
 builder.Services.AddTransient<IServicePais, ServicePais>();
-
+//builder.Services.AddTransient<IServiceNft, ServiceNft>();
 
 
 
@@ -45,7 +45,7 @@ builder.Services.AddAutoMapper(config =>
     config.AddProfile<ClienteProfile>();
     config.AddProfile<TarjetaProfile>();
     config.AddProfile<PaisProfile>();
-
+   // config.AddProfile<NftProfile>();
 });
 
 
