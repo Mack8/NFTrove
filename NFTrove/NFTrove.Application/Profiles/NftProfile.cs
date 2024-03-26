@@ -22,7 +22,7 @@ namespace NFTrove.Application.Profiles
             .ForMember(dest => dest.Autor, orig => orig.MapFrom(o => o.Autor))
             .ForMember(dest => dest.Valor, orig => orig.MapFrom(o => o.Valor))
             .ForMember(dest => dest.CantidadInventario, orig => orig.MapFrom(o => o.Cantidad))
-            .ForMember(dest => dest.ImagenUrl, orig => orig.MapFrom(o => o.Imagen));
+            .ForMember(dest => dest.Imagen, orig => orig.MapFrom(o => o.Imagen));
         }
     }
 }

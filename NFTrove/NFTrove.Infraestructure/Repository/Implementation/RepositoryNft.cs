@@ -50,11 +50,9 @@ public class RepositoryNft : IRepositoryNft
         return @object!;
     }
 
-    public async Task<ICollection<Nft>> ListAsync()
+   public async Task<ICollection<Nft>> ListAsync()
     {
-        var collection = await _context.Set<Nft>().
-                                            Include(b => b.Id).
-                                            AsNoTracking().ToListAsync();
+        var collection = await _context.Set<Nft>().AsNoTracking().ToListAsync();
         return collection;
     }
 
@@ -62,5 +60,6 @@ public class RepositoryNft : IRepositoryNft
     {
         await _context.SaveChangesAsync();
     }
+
 
 }

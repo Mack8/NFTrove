@@ -66,10 +66,10 @@ public partial class NFTroveContext : DbContext
             entity.Property(e => e.Autor)
                 .HasMaxLength(100)
                 .IsUnicode(false);
-            entity.Property(e => e.ImagenUrl)
+            entity.Property(e => e.Imagen)
                 .HasMaxLength(255)
                 .IsUnicode(false)
-                .HasColumnName("ImagenURL");
+                .HasColumnName("Imagen");
             entity.Property(e => e.Nombre)
                 .HasMaxLength(100)
                 .IsUnicode(false);
