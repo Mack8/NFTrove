@@ -15,7 +15,7 @@ public partial class Nft
 
     public int? CantidadInventario { get; set; }
 
-    public string? ImagenUrl { get; set; }
+    public string? Imagen { get; set; }
 
     public virtual PropietarioNft? PropietarioNft { get; set; }
 
