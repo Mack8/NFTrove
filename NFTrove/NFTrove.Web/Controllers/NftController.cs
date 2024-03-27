@@ -24,6 +24,12 @@ namespace NFTrove.Web.Controllers;
         return View(collection);
     }
 
+    public IActionResult Create()
+
+    {
+        return View();
+    }
+
     [HttpPost]
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> Create(NftDTO dto, IFormFile imageFile)
