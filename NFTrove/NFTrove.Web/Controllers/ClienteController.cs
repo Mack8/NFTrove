@@ -53,11 +53,11 @@ namespace NFTrove.Web.Controllers
 
 
 
-        // GET: BodegaController/Details/5
+       
         public async Task<IActionResult> Details(string id)
         {
             var @object = await _serviceCliente.FindByIdAsync(id);
-            var paises = _servicePais.ListAsync().Result;
+            var paises = await  _servicePais.ListAsync();
             ViewBag.Paises = paises;
             return View(@object);
         }

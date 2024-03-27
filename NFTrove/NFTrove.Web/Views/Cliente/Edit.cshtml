@@ -34,7 +34,7 @@
                 <span asp-validation-for="CorreoElectronico" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="PaisID" class="control-label"></label>
+                <label asp-for="PaisID" class="control-label">País</label>
                 <select asp-for="PaisID" class="form-control">
                     @foreach (var pais in ViewBag.Paises as List<PaisDTO>)
                     {
@@ -45,13 +45,16 @@
             </div>
             <br />
             <div class="row">
-                <div class="col-md-6 text-left">
+
+                <div class="col-lg-6 ">
+                    <a asp-action="Index" class="btn btn-secondary btn-block">Back</a>
+                </div>
+
+                <div class="col-lg-6 d-flex justify-content-end">
                     <input type="submit" value="Save" class="btn btn-primary btn-block" />
                 </div>
-                <div class="col-md-6 text-right">
-                    <a asp-action="Index" class="btn btn-secondary btn-block"> Back </a>
-                </div>
             </div>
+
         </form>
     </div>
 </div>
