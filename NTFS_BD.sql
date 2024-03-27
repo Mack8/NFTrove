@@ -1,4 +1,4 @@
-CREATE DATABASE BD_NTF;
+CREATE DATABASE BD_NFT;
 
 
 -- Usar la base de datos
