@@ -4,53 +4,59 @@
     ViewData["Title"] = "Index";
 }
 
+<div class="container">
+    <div class="row mb-3">
+        <div class="col-md-12 d-flex justify-content-end">
+            <a asp-action="Create" class="btn btn-primary">Create New</a>
+        </div>
+    </div>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.Identificacion)</th>
+                <th>@Html.DisplayNameFor(model => model.Nombre)</th>
+                <th>@Html.DisplayNameFor(model => model.Apellidos)</th>
+                <th>@Html.DisplayNameFor(model => model.CorreoElectronico)</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => item.Identificacion)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Nombre)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Apellidos)</td>
+                    <td>@Html.DisplayFor(modelItem => item.CorreoElectronico)</td>
+                    <td class="text-right d-flex justify-content-end">
+                        <a asp-action="Edit" asp-route-id="@item.Identificacion" class="btn btn-secondary" style="margin-right: 5px;">Edit</a>
+                        <a href="@Url.Action("Details", "Cliente", new { id = item.Identificacion })" class="btn btn-info details-link" style="margin-right: 5px;">Details</a>
 
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Identificacion)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Nombre)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Apellidos)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CorreoElectronico)
-            </th>   
 
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Identificacion)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Nombre)
-            </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Apellidos)
-                </td>
-            <td>
-                    @Html.DisplayFor(modelItem => item.CorreoElectronico)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id=item.Identificacion}) |
-                    @Html.ActionLink("Details", "Details", new { id = item.Identificacion})
-                    @Html.ActionLink("Delete", "Delete", new { id = item.ID })
-            </td>
-        </tr>
+                        <a asp-action="Delete" asp-route-id="@item.Identificacion" class="btn btn-danger">Delete</a>
+                    </td>
+
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<div id="detailsSection"></div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $(document).on('click', '.details-link', function (e) {
+                e.preventDefault();
+                var url = $(this).attr('href');
+                $('#detailsSection').load(url);
+            });
+        });
+    </script>
 }
-    </tbody>
 
-</table>
+
 

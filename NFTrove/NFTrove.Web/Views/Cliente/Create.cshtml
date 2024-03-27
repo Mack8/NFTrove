@@ -6,11 +6,10 @@
     List<PaisDTO> paises = ViewData["Paises"] as List<PaisDTO>;
 }
 
-<h1>Create</h1>
-
-<h4>ClienteDTO</h4>
+<h1 class="text-center">Create</h1>
 <hr />
-<div class="row">
+
+<div class="row justify-content-center">
     <div class="col-md-4">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
@@ -35,7 +34,7 @@
                 <span asp-validation-for="CorreoElectronico" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="PaisID" class="control-label"></label>
+                <label asp-for="PaisID" class="control-label">País</label>
                 <select asp-for="PaisID" class="form-control">
                     @foreach (var pais in ViewBag.Paises as List<PaisDTO>)
                     {
@@ -44,16 +43,25 @@
                 </select>
                 <span asp-validation-for="PaisID" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+
+            <br />
+
+            <div class="row">
+
+                <div class="col-lg-6 ">
+                    <a asp-action="Index" class="btn btn-secondary btn-block">Cancel</a>
+                </div>
+
+                <div class="col-lg-6 d-flex justify-content-end">
+                    <input type="submit" value="Create" class="btn btn-primary btn-block" />
+                </div>
             </div>
+
         </form>
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+
 
 @section Scripts {
     @{

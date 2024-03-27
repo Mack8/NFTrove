@@ -27,6 +27,21 @@ CREATE TABLE CLIENTE (
     FOREIGN KEY (PaisID) REFERENCES Pais(ID)
 );
 
+-- Insertar datos de ejemplo en la tabla PAIS
+INSERT INTO PAIS (ID, ISO, Descripcion) VALUES
+(1, 'USA', 'Estados Unidos'),
+(2, 'GBR', 'Reino Unido'),
+(3, 'MEX', 'México'),
+(4, 'ESP', 'España'),
+(5, 'CAN', 'Canadá');
+
+-- Insertar datos de ejemplo en la tabla CLIENTE
+INSERT INTO CLIENTE (Nombre, Apellidos, Identificacion, CorreoElectronico, PaisID) VALUES
+('Juan', 'Pérez', '123456789', 'juan@example.com', 1), -- Cliente en Estados Unidos (ID 1)
+('María', 'García', '987654321', 'maria@example.com', 3), -- Cliente en México (ID 3)
+('David', 'Smith', '555555555', 'david@example.com', 1); -- Otro cliente en Estados Unidos (ID 1)
+
+
 
 
 
