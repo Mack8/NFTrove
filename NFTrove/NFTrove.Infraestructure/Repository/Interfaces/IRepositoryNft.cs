@@ -11,8 +11,8 @@ public interface IRepositoryNft
 {
     Task<ICollection<Nft>> FindByDescriptionAsync(string description);
     Task<ICollection<Nft>> ListAsync();
-    Task<Nft> FindByIdAsync(int id);
+    Task<Nft> FindByIdAsync(Guid id);
     Task<Guid> AddAsync(Nft entity);
-    Task DeleteAsync(int id);
+    Task DeleteAsync(Guid id);
     Task UpdateAsync();
 }

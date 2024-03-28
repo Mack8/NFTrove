@@ -11,9 +11,9 @@ public interface IServiceNft
 {
     Task<ICollection<NftDTO>> FindByDescriptionAsync(string description);
     Task<ICollection<NftDTO>> ListAsync();
-    Task<NftDTO> FindByIdAsync(int id);
+    Task<NftDTO> FindByIdAsync(Guid id);
     Task<Guid> AddAsync(NftDTO dto);
-    Task DeleteAsync(int id);
-    Task UpdateAsync(int id, NftDTO dto);
+    Task DeleteAsync(Guid id);
+    Task UpdateAsync(Guid id, NftDTO dto);
 
 }

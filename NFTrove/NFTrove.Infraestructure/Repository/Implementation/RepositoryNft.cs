@@ -27,7 +27,7 @@ public class RepositoryNft : IRepositoryNft
         return entity.Id;
     }
 
-    public async Task DeleteAsync(int id)
+    public async Task DeleteAsync(Guid id)
     {
         // Raw Query
         //https://www.learnentityframeworkcore.com/raw-sql/execute-sql
@@ -44,7 +44,7 @@ public class RepositoryNft : IRepositoryNft
         return collection;
     }
 
-    public async Task<Nft> FindByIdAsync(int id)
+    public async Task<Nft> FindByIdAsync(Guid id)
     {
         var @object = await _context.Set<Nft>().FindAsync(id);
         return @object!;
