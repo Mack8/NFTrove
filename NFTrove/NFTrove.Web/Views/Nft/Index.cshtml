@@ -7,7 +7,7 @@
 <div class="container">
     <div class="row mb-3">
         <div class="col-md-12 d-flex justify-content-end">
-            <a asp-action="Create" class="btn btn-primary">Create New</a>
+            <a asp-action="Create" class="btn btn-primary">Crear NFT</a>
         </div>
     </div>
 
@@ -56,12 +56,13 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Imagen)
             </td>
-            <td>
-                        <a asp-action="Edit" asp-route-id="@item.ID" class="btn btn-secondary" style="margin-right: 5px;">Edit</a>
-                        <a href="@Url.Action("Details", new { id = item.ID })" class="btn btn-info details-link" style="margin-right: 5px;">Details</a>
+
+                    <td class="text-right d-flex justify-content-end">
+                        <a asp-action="Edit" asp-route-id="@item.ID" class="btn btn-secondary" style="margin-right: 5px;">Editar</a>
+                        <a href="@Url.Action("Details", new { id = item.ID })" class="btn btn-info details-link" style="margin-right: 5px;">Detalles</a>
 
 
-                        <a asp-action="Delete" asp-route-id="@item.ID" class="btn btn-danger">Delete</a>
+                        <a asp-action="Delete" asp-route-id="@item.ID" class="btn btn-danger">Eliminar</a>
             </td>
         </tr>
 }
