@@ -57,9 +57,11 @@
                 @Html.DisplayFor(modelItem => item.Imagen)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                        <a asp-action="Edit" asp-route-id="@item.ID" class="btn btn-secondary" style="margin-right: 5px;">Edit</a>
+                        <a href="@Url.Action("Details", new { id = item.ID })" class="btn btn-info details-link" style="margin-right: 5px;">Details</a>
+
+
+                        <a asp-action="Delete" asp-route-id="@item.ID" class="btn btn-danger">Delete</a>
             </td>
         </tr>
 }
