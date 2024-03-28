@@ -1,38 +1,38 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using NFTrove.Application.DTOs;
-using NFTrove.Application.Services.Implementations;
 using NFTrove.Application.Services.Interfaces;
 
 namespace NFTrove.Web.Controllers
 {
-    public class ClienteController : Controller
+    public class PaisController : Controller
     {
-        private readonly IServiceCliente _serviceCliente;
+        
         private readonly IServicePais _servicePais;
 
-        public ClienteController(IServiceCliente serviceCliente, IServicePais servicePais)
+        public PaisController(IServicePais servicePais)
         {
-            _serviceCliente = serviceCliente;
+            
             _servicePais = servicePais;
         }
 
         [HttpGet]
         public async Task<IActionResult> Index()
         {
-            var collection = await _serviceCliente.ListAsync();
+            var collection = await _servicePais.ListAsync();
             return View(collection);
         }
+
         public IActionResult Create()
 
         {
-            var paises = _servicePais.ListAsync().Result; 
+            var paises = _servicePais.ListAsync().Result;
             ViewBag.Paises = paises;
             return View();
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(ClienteDTO dto)
+        public async Task<IActionResult> Create(PaisDTO dto)
         {
 
             if (!ModelState.IsValid)
@@ -44,7 +44,7 @@ namespace NFTrove.Web.Controllers
                 return BadRequest(errors);
             }
 
-            await _serviceCliente.AddAsync(dto);
+            await _servicePais.AddAsync(dto);
 
 
             return RedirectToAction("Index");
@@ -53,11 +53,11 @@ namespace NFTrove.Web.Controllers
 
 
 
-       
-        public async Task<IActionResult> Details(string id)
+
+        public async Task<IActionResult> Details(int id)
         {
-            var @object = await _serviceCliente.FindByIdAsync(id);
-            var paises = await  _servicePais.ListAsync();
+            var @object = await _servicePais.FindByIdAsync(id);
+            var paises = await _servicePais.ListAsync();
             ViewBag.Paises = paises;
             return PartialView("_Details", @object);
         }
@@ -65,44 +65,52 @@ namespace NFTrove.Web.Controllers
 
 
 
-        public async Task<IActionResult> Edit(string id)
+        public async Task<IActionResult> Edit(int id)
         {
-            var paises = _servicePais.ListAsync().Result;
-            ViewBag.Paises = paises;
-            var @object = await _serviceCliente.FindByIdAsync(id);
-
+            var @object = await _servicePais.FindByIdAsync(id);
+            if (@object == null)
+            {
+                return NotFound();
+            }
             return View(@object);
         }
 
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id, ClienteDTO dto)
+        public async Task<IActionResult> Edit(int id, PaisDTO dto)
         {
+            if (id != dto.ID)
+            {
+                return BadRequest();
+            }
 
-            await _serviceCliente.UpdateAsync(id, dto);
+            await _servicePais.UpdateAsync(id, dto);
 
             return RedirectToAction("Index");
-
         }
 
-        public async Task<IActionResult> Delete(string id)
+        public async Task<IActionResult> Delete(int id)
         {
-            var @object = await _serviceCliente.FindByIdAsync(id);
+            var @object = await _servicePais.FindByIdAsync(id);
+            if (@object == null)
+            {
+                return NotFound();
+            }
 
             return View(@object);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Delete(string id, IFormCollection collection)
+        public async Task<IActionResult> Delete(int id, IFormCollection collection)
         {
-            await _serviceCliente.DeleteAsync(id);
+            await _servicePais.DeleteAsync(id);
 
             return RedirectToAction("Index");
         }
 
-       
+
 
 
     }

@@ -31,8 +31,7 @@
                     <td>@Html.DisplayFor(modelItem => item.CorreoElectronico)</td>
                     <td class="text-right d-flex justify-content-end">
                         <a asp-action="Edit" asp-route-id="@item.Identificacion" class="btn btn-secondary" style="margin-right: 5px;">Edit</a>
-                        <a href="@Url.Action("Details", "Cliente", new { id = item.Identificacion })" class="btn btn-info details-link" style="margin-right: 5px;">Details</a>
-
+                        <a href="@Url.Action("Details", new { id = item.Identificacion })" class="btn btn-info details-link" style="margin-right: 5px;">Details</a>
 
 
                         <a asp-action="Delete" asp-route-id="@item.Identificacion" class="btn btn-danger">Delete</a>
