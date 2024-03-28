@@ -4,48 +4,46 @@
     ViewData["Title"] = "Index";
 }
 
+
 <div class="container">
     <div class="row mb-3">
         <div class="col-md-12 d-flex justify-content-end">
-            <a asp-action="Create" class="btn btn-primary">Create New</a>
+            <a asp-action="Create" class="btn btn-primary">Crear Pais</a>
         </div>
     </div>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.ID)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.ISO)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Descripcion)
-                </th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model)
-            {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.ID)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.ISO)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Descripcion)
-                    </td>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ISO)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Descripcion)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ISO)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Descripcion)
+            </td>
                     <td class="text-right d-flex justify-content-end">
                         <a asp-action="Edit" asp-route-id="@item.ID" class="btn btn-secondary" style="margin-right: 5px;">Editar</a>
-                        <a asp-action="Delete" asp-route-id="@item.ID" class="btn btn-danger delete-btn" style="margin-right: 5px;">Eliminar</a>
+                        <a asp-action="Delete" asp-route-id="@item.ID" class="btn btn-danger">Eliminar</a>
                     </td>
-                </tr>
-            }
-        </tbody>
-    </table>
-</div>
-
+        </tr>
+}
+    </tbody>
+</table>

@@ -1,14 +1,13 @@
-﻿@model NFTrove.Application.DTOs.ClienteDTO
+﻿@model NFTrove.Application.DTOs.NftDTO
 
 @{
     ViewData["Title"] = "Delete";
 }
 
-<h1>Eliminar Cliente</h1>
+<h1>Eliminar</h1>
 
-<h3>Esta seguro que desea eliminar el Cliente?</h3>
+<h3>Esta seguro que desea eliminar el NFT?</h3>
 <div>
-    <h4>ClienteDTO</h4>
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
@@ -24,33 +23,38 @@
             @Html.DisplayFor(model => model.Nombre)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Apellidos)
+            @Html.DisplayNameFor(model => model.Autor)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Apellidos)
+            @Html.DisplayFor(model => model.Autor)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Identificacion)
+            @Html.DisplayNameFor(model => model.Valor)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Identificacion)
+            @Html.DisplayFor(model => model.Valor)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.CorreoElectronico)
+            @Html.DisplayNameFor(model => model.Cantidad)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.CorreoElectronico)
+            @Html.DisplayFor(model => model.Cantidad)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.PaisID)
+            @Html.DisplayNameFor(model => model.Imagen)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.PaisID)
+            @{
+                // Convertir el varbinary a una representación base64
+                var base64Image = Convert.ToBase64String(Model.Imagen);
+                var imgSrc = string.Format("data:image/png;base64,{0}", base64Image);
+            }
+            <img src="@imgSrc" alt="Imagen" style="max-width: 100px; max-height: 100px;" />
         </dd>
     </dl>
     
     <form asp-action="Delete">
         <input type="submit" value="Delete" class="btn btn-danger" /> |
-        <a asp-action="Index">Cancelar</a>
+        <a asp-action="Index" class="btn btn-secondary btn-block">Cancelar</a>
     </form>
 </div>

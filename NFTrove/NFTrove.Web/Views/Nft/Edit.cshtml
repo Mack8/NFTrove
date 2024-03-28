@@ -1,14 +1,15 @@
 ﻿@model NFTrove.Application.DTOs.NftDTO
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Edit";
 }
 
-<h1 class="text-center">Crear NFT</h1>
+<h1 class="text-center">Editar NFT</h1>
+
 <hr />
 <div class="row justify-content-center">
- <div class="col-md-4">
-        <form asp-action="Create" enctype="multipart/form-data"
+    <div class="col-md-4">
+        <form asp-action="Edit" enctype="multipart/form-data"
               data-ajax="true"
               data-ajax-method="POST"
               data-ajax-begin="onBegin"
@@ -16,8 +17,14 @@
               data-ajax-success="onSuccess"
               data-ajax-complete="onComplete"
               asp-antiforgery="true">
+       
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                       <div class="form-group">
+            <div class="form-group">
+                <label asp-for="ID" class="control-label"></label>
+                <input asp-for="ID" class="form-control" readonly />
+                <span asp-validation-for="ID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <label asp-for="Nombre" class="control-label"></label>
                 <input asp-for="Nombre" class="form-control" />
                 <span asp-validation-for="Nombre" class="text-danger"></span>
@@ -42,22 +49,22 @@
                 <input type="file" class="form-control" id="ImageFile" name="ImageFile" required />
                 <span asp-validation-for="Imagen" class="text-danger"></span>
             </div>
+            
             <br />
-
             <div class="row">
-
-                <div class="col-lg-6 ">
-                    <a asp-action="Index" class="btn btn-secondary btn-block">Cancelar</a>
-                </div>
-
-                <div class="col-lg-6 d-flex justify-content-end">
-                    <input type="submit" value="Crear" class="btn btn-primary btn-block" />
-                </div>
+            <div class="col-lg-6 ">
+                <a asp-action="Index" class="btn btn-secondary btn-block">Cancelar</a>
             </div>
-         
+            <div class="col-lg-6 ">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+            </div>
         </form>
     </div>
 </div>
+<div id="loader" class="xxxx"></div>
+
+
 <div id="loader" class="xxxx"></div>
 
 

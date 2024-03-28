@@ -32,7 +32,7 @@ public class ServiceNft : IServiceNft
         return await _repository.AddAsync(objectMapped);
     }
 
-    public async Task DeleteAsync(int id)
+    public async Task DeleteAsync(Guid id)
     {
         await _repository.DeleteAsync(id);
     }
@@ -47,7 +47,7 @@ public class ServiceNft : IServiceNft
 
     }
 
-    public async Task<NftDTO> FindByIdAsync(int id)
+    public async Task<NftDTO> FindByIdAsync(Guid id)
     {
         var @object = await _repository.FindByIdAsync(id);
         var objectMapped = _mapper.Map<NftDTO>(@object);
@@ -64,7 +64,7 @@ public class ServiceNft : IServiceNft
         return collection;
     }
 
-    public async Task UpdateAsync(int id, NftDTO dto)
+    public async Task UpdateAsync(Guid id, NftDTO dto)
     {
         var @object = await _repository.FindByIdAsync(id);
         //       source, destination
