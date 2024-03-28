@@ -66,14 +66,14 @@ namespace NFTrove.Web.Controllers;
 
 
     // GET: ProductoController/Details/5
-    public async Task<IActionResult> Details(int id)
+    public async Task<IActionResult> Details(Guid id)
     {
         var @object = await _serviceNft.FindByIdAsync(id);
         return View(@object);
     }
 
     // GET: ProductoController/Edit/5
-    public async Task<IActionResult> Edit(int id)
+    public async Task<IActionResult> Edit(Guid id)
     {
         var @object = await _serviceNft.FindByIdAsync(id);
         return View(@object);
@@ -82,14 +82,14 @@ namespace NFTrove.Web.Controllers;
     // POST: ProductoController/Edit/5
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Edit(int id, NftDTO dto)
+    public async Task<IActionResult> Edit(Guid id, NftDTO dto)
     {
         await _serviceNft.UpdateAsync(id, dto);
         return RedirectToAction("Index");
     }
 
     // GET: ProductoController/Delete/5
-    public async Task<IActionResult> Delete(int id)
+    public async Task<IActionResult> Delete(Guid id)
     {
         var @object = await _serviceNft.FindByIdAsync(id);
         return View(@object);
@@ -98,7 +98,7 @@ namespace NFTrove.Web.Controllers;
     // POST: ProductoController/Delete/5
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Delete(int id, IFormCollection collection)
+    public async Task<IActionResult> Delete(Guid id, IFormCollection collection)
     {
         await _serviceNft.DeleteAsync(id);
         return RedirectToAction("Index");
