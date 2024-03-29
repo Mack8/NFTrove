@@ -36,7 +36,7 @@ namespace NFTrove.Web.Controllers;
     {
         MemoryStream target = new MemoryStream();
 
-        // Cuando es Insert Image viene en null porque se pasa diferente
+       
         if (dto.Imagen == null)
         {
             if (imageFile != null)
@@ -50,12 +50,11 @@ namespace NFTrove.Web.Controllers;
 
         if (!ModelState.IsValid)
         {
-            // Lee del ModelState todos los errores que
-            // vienen para el lado del server
+           
             string errors = string.Join("; ", ModelState.Values
                                .SelectMany(x => x.Errors)
                                .Select(x => x.ErrorMessage));
-            // Response errores
+            
             return BadRequest(errors);
         }
 
@@ -70,14 +69,14 @@ namespace NFTrove.Web.Controllers;
         return View(@object);
     }
 
-    // POST: ProductoController/Edit/5
+    
     [HttpPost]
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> Edit(Guid id, NftDTO dto, IFormFile imageFile)
     {
         MemoryStream target = new MemoryStream();
 
-        // Cuando es Insert Image viene en null porque se pasa diferente
+       
         if (dto.Imagen == null)
         {
             if (imageFile != null)
@@ -92,24 +91,21 @@ namespace NFTrove.Web.Controllers;
         await _serviceNft.UpdateAsync(id, dto);
         return RedirectToAction("Index");
     }
-    // GET: ProductoController/Details/5
+ 
     public async Task<IActionResult> Details(Guid id)
     {
         var @object = await _serviceNft.FindByIdAsync(id);
         return View(@object);
     }
 
-    // GET: ProductoController/Edit/5
    
-
-    // GET: ProductoController/Delete/5
     public async Task<IActionResult> Delete(Guid id)
     {
         var @object = await _serviceNft.FindByIdAsync(id);
         return View(@object);
     }
 
-    // POST: ProductoController/Delete/5
+  
     [HttpPost]
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> Delete(Guid id, IFormCollection collection)

@@ -4,9 +4,9 @@
     ViewData["Title"] = "Edit";
 }
 
-<h1>Edit</h1>
+<h1>Editar NFT</h1>
 
-<h4>NftDTO</h4>
+
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -36,13 +36,13 @@
             </div>
             <div class="form-group">
                 <label asp-for="Valor" class="control-label"></label>
-                <input asp-for="Valor" class="form-control" />
+                <input asp-for="Valor" class="form-control" id="decimal-input" />
                 <span asp-validation-for="Valor" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Cantidad" class="control-label"></label>
-                <input asp-for="Cantidad" class="form-control" />
-                <span asp-validation-for="Cantidad" class="text-danger"></span>
+                <label asp-for="CantidadInventario" class="control-label"></label>
+                <input asp-for="CantidadInventario" class="form-control" />
+                <span asp-validation-for="CantidadInventario" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Imagen" class="control-label"></label>
@@ -57,7 +57,7 @@
                     <a asp-action="Index" class="btn btn-secondary btn-block">Cancelar</a>
                 </div>
                 <div class="col-lg-6 d-flex justify-content-end">
-                <input type="submit" value="Guradar" class="btn btn-primary" />
+                    <input type="submit" value="Guradar" class="btn btn-primary" />
             </div>
             </div>
         </form>
@@ -71,8 +71,13 @@
 
 
 @section scripts {
-
     <script>
+        document.getElementById("decimal-input").addEventListener("input", function (event) {
+            // Reemplazar comas con puntos
+            this.value = this.value.replace(",", ".");
+        });
+    </script>
+     <script>
         function onBegin() {
             console.log("onBegin")
             document.getElementById("loader").className = "loading";
@@ -98,13 +103,8 @@
             console.log("onComplete")
             document.getElementById("loader").className = "xxxxx";
 
-            // Clear field
-
-            document.getElementById("Nombre").value = "";
-            document.getElementById("Autor").value = "";
-            document.getElementById("Valor").value = "";
-            document.getElementById("Cantidad").value = "";
-            document.getElementById("ImageFile").value = "";
+            // Redirect to Index page
+            window.location.href = "/Nft/Index";
 
 
 
