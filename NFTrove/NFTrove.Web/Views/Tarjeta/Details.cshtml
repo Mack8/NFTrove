@@ -1,0 +1,31 @@
+﻿@model NFTrove.Application.DTOs.TarjetaDTO
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>TarjetaDTO</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.ID)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.ID)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Tipo)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Tipo)
+        </dd>
+    </dl>
+</div>
+<div>
+    <div class="col-lg-6 ">
+        <a asp-action="Index" class="btn btn-secondary btn-block">Cancelar</a>
+    </div>
+</div>
