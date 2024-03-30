@@ -17,7 +17,7 @@ public partial class Nft
 
     public byte[] Imagen { get; set; } = null!;
 
-    public virtual PropietarioNft? PropietarioNft { get; set; }
+    public virtual ICollection<DetalleFactura> DetalleFactura { get; set; } = new List<DetalleFactura>();
 
-    public virtual ICollection<VentaNft> VentaNft { get; set; } = new List<VentaNft>();
+    public virtual PropietarioNft? PropietarioNft { get; set; }
 }

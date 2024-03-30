@@ -1,0 +1,58 @@
+﻿@model NFTrove.Application.DTOs.PaisDTO
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <h1 class="text-center">Delete</h1>
+            <h3 class="text-center">Are you sure you want to delete this?</h3>
+            <hr />
+
+            <div class="row justify-content-center mb-3">
+                <div class="col-sm-2 font-weight-bold text-right">
+                    @Html.DisplayNameFor(model => model.ID)
+                </div>
+                <div class="col-sm-4">
+                    <input type="text" class="form-control" value="@Html.DisplayFor(model => model.ID)" readonly />
+                </div>
+            </div>
+
+            <div class="row justify-content-center mb-3">
+                <div class="col-sm-2 font-weight-bold text-right">
+                    @Html.DisplayNameFor(model => model.ISO)
+                </div>
+                <div class="col-sm-4">
+                    <input type="text" class="form-control" value="@Html.DisplayFor(model => model.ISO)" readonly />
+                </div>
+            </div>
+
+            <div class="row justify-content-center mb-3">
+                <div class="col-sm-2 font-weight-bold text-right">
+                    @Html.DisplayNameFor(model => model.Descripcion)
+                </div>
+                <div class="col-sm-4">
+                    <input type="text" class="form-control" value="@Html.DisplayFor(model => model.Descripcion)" readonly />
+                </div>
+            </div>
+
+            <div class="row justify-content-center">
+                <div class="col-sm-4">
+                    <form asp-action="Delete">
+                        <input type="hidden" asp-for="ID" />
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <a asp-action="Index" class="btn btn-secondary btn-block">Back</a>
+                            </div>
+                            <div class="col-lg-6 d-flex justify-content-end">
+                                <button type="submit" class="btn btn-danger btn-block">Delete</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

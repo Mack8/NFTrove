@@ -17,9 +17,9 @@ public partial class Cliente
 
     public int? PaisId { get; set; }
 
+    public virtual ICollection<Factura> Factura { get; set; } = new List<Factura>();
+
     public virtual Pais? Pais { get; set; }
 
     public virtual ICollection<PropietarioNft> PropietarioNft { get; set; } = new List<PropietarioNft>();
-
-    public virtual ICollection<VentaNft> VentaNft { get; set; } = new List<VentaNft>();
 }

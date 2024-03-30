@@ -14,6 +14,10 @@ public partial class NFTroveContext : DbContext
 
     public virtual DbSet<Cliente> Cliente { get; set; }
 
+    public virtual DbSet<DetalleFactura> DetalleFactura { get; set; }
+
+    public virtual DbSet<Factura> Factura { get; set; }
+
     public virtual DbSet<Nft> Nft { get; set; }
 
     public virtual DbSet<Pais> Pais { get; set; }
@@ -22,13 +26,11 @@ public partial class NFTroveContext : DbContext
 
     public virtual DbSet<Tarjeta> Tarjeta { get; set; }
 
-    public virtual DbSet<VentaNft> VentaNft { get; set; }
-
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Cliente>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__CLIENTE__3214EC27CED0055C");
+            entity.HasKey(e => e.Id).HasName("PK__CLIENTE__3214EC27F53E3C28");
 
             entity.ToTable("CLIENTE");
 
@@ -54,9 +56,51 @@ public partial class NFTroveContext : DbContext
                 .HasConstraintName("FK__CLIENTE__PaisID__286302EC");
         });
 
+        modelBuilder.Entity<DetalleFactura>(entity =>
+        {
+            entity.HasKey(e => e.DetalleId).HasName("PK__DetalleF__6E19D6FA866C3623");
+
+            entity.Property(e => e.DetalleId)
+                .HasDefaultValueSql("(NEXT VALUE FOR [dbo].[NoFactura])")
+                .HasColumnName("DetalleID");
+            entity.Property(e => e.FacturaId).HasColumnName("FacturaID");
+            entity.Property(e => e.Nftid).HasColumnName("NFTID");
+            entity.Property(e => e.Precio).HasColumnType("decimal(18, 2)");
+            entity.Property(e => e.TotalLinea).HasColumnType("decimal(18, 2)");
+
+            entity.HasOne(d => d.Factura).WithMany(p => p.DetalleFactura)
+                .HasForeignKey(d => d.FacturaId)
+                .HasConstraintName("FK__DetalleFa__Factu__3E52440B");
+
+            entity.HasOne(d => d.Nft).WithMany(p => p.DetalleFactura)
+                .HasForeignKey(d => d.Nftid)
+                .HasConstraintName("FK__DetalleFa__NFTID__3F466844");
+        });
+
+        modelBuilder.Entity<Factura>(entity =>
+        {
+            entity.HasKey(e => e.FacturaId).HasName("PK__Factura__5C0248059E2F3F3F");
+
+            entity.Property(e => e.FacturaId)
+                .ValueGeneratedNever()
+                .HasColumnName("FacturaID");
+            entity.Property(e => e.ClienteId).HasColumnName("ClienteID");
+            entity.Property(e => e.TarjetaId).HasColumnName("TarjetaID");
+            entity.Property(e => e.Total).HasColumnType("decimal(18, 2)");
+
+            entity.HasOne(d => d.Cliente).WithMany(p => p.Factura)
+                .HasForeignKey(d => d.ClienteId)
+                .HasConstraintName("FK__Factura__Cliente__398D8EEE");
+
+            entity.HasOne(d => d.Tarjeta).WithMany(p => p.Factura)
+                .HasForeignKey(d => d.TarjetaId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK__Factura__Tarjeta__3A81B327");
+        });
+
         modelBuilder.Entity<Nft>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__NFT__3214EC2796A44DDA");
+            entity.HasKey(e => e.Id).HasName("PK__NFT__3214EC274E31AC03");
 
             entity.ToTable("NFT");
 
@@ -66,10 +110,6 @@ public partial class NFTroveContext : DbContext
             entity.Property(e => e.Autor)
                 .HasMaxLength(100)
                 .IsUnicode(false);
-            entity.Property(e => e.Imagen)
-                .HasMaxLength(255)
-                .IsUnicode(false)
-                .HasColumnName("Imagen");
             entity.Property(e => e.Nombre)
                 .HasMaxLength(100)
                 .IsUnicode(false);
@@ -78,11 +118,11 @@ public partial class NFTroveContext : DbContext
 
         modelBuilder.Entity<Pais>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__PAIS__3214EC272CD34596");
+            entity.HasKey(e => e.Id).HasName("PK__PAIS__3214EC27A5ADC352");
 
             entity.ToTable("PAIS");
 
-            entity.HasIndex(e => e.Iso, "UQ__PAIS__C4979A239D19F069").IsUnique();
+            entity.HasIndex(e => e.Iso, "UQ__PAIS__C4979A23240A174D").IsUnique();
 
             entity.Property(e => e.Id)
                 .ValueGeneratedNever()
@@ -99,7 +139,7 @@ public partial class NFTroveContext : DbContext
 
         modelBuilder.Entity<PropietarioNft>(entity =>
         {
-            entity.HasKey(e => e.Nftid).HasName("PK__PROPIETA__5A8CBD1AF569B25C");
+            entity.HasKey(e => e.Nftid).HasName("PK__PROPIETA__5A8CBD1A97F4B9C8");
 
             entity.ToTable("PROPIETARIO_NFT");
 
@@ -120,7 +160,7 @@ public partial class NFTroveContext : DbContext
 
         modelBuilder.Entity<Tarjeta>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__TARJETA__3214EC27EB301CBF");
+            entity.HasKey(e => e.Id).HasName("PK__TARJETA__3214EC278DD99C72");
 
             entity.ToTable("TARJETA");
 
@@ -131,35 +171,7 @@ public partial class NFTroveContext : DbContext
                 .HasMaxLength(30)
                 .IsUnicode(false);
         });
-
-        modelBuilder.Entity<VentaNft>(entity =>
-        {
-            entity.HasKey(e => e.VentaId).HasName("PK__VentaNFT__5B41514CE2990862");
-
-            entity.ToTable("VentaNFT");
-
-            entity.Property(e => e.VentaId)
-                .ValueGeneratedNever()
-                .HasColumnName("VentaID");
-            entity.Property(e => e.ClienteId).HasColumnName("ClienteID");
-            entity.Property(e => e.Estado)
-                .HasMaxLength(20)
-                .IsUnicode(false);
-            entity.Property(e => e.Nftid).HasColumnName("NFTID");
-            entity.Property(e => e.TarjetaId).HasColumnName("TarjetaID");
-
-            entity.HasOne(d => d.Cliente).WithMany(p => p.VentaNft)
-                .HasForeignKey(d => d.ClienteId)
-                .HasConstraintName("FK__VentaNFT__Client__34C8D9D1");
-
-            entity.HasOne(d => d.Nft).WithMany(p => p.VentaNft)
-                .HasForeignKey(d => d.Nftid)
-                .HasConstraintName("FK__VentaNFT__NFTID__33D4B598");
-
-            entity.HasOne(d => d.Tarjeta).WithMany(p => p.VentaNft)
-                .HasForeignKey(d => d.TarjetaId)
-                .HasConstraintName("FK__VentaNFT__Tarjet__35BCFE0A");
-        });
+        modelBuilder.HasSequence("NoFactura").HasMin(1L);
 
         OnModelCreatingPartial(modelBuilder);
     }

@@ -1,6 +1,7 @@
 CREATE DATABASE BD_NFT;
 
 
+ALTER AUTHORIZATION ON DATABASE::ElectronicsNetcore TO sa;
 -- Usar la base de datos
 
 
@@ -74,14 +75,54 @@ CREATE TABLE PROPIETARIO_NFT (
 
 
 
-CREATE TABLE VentaNFT (
-    VentaID INT PRIMARY KEY,
-    NFTID uniqueidentifier,
+CREATE TABLE Factura (
+    FacturaID INT PRIMARY KEY,
     ClienteID uniqueidentifier,
-    TarjetaID INT,
-    FechaVenta DATE,
-    Estado VARCHAR(20),
-    FOREIGN KEY (NFTID) REFERENCES NFT(ID),
+    FechaFactura DATE,
+    Total DECIMAL(18, 2),
+	TarjetaID INT NOT NULL,
+	EstadoFactura INT NOT NULL,
     FOREIGN KEY (ClienteID) REFERENCES Cliente(ID),
-    FOREIGN KEY (TarjetaID) REFERENCES Tarjeta(ID)
+	FOREIGN KEY (TarjetaID) REFERENCES Tarjeta(ID)
+);
+
+CREATE TABLE DetalleFactura (
+    DetalleID INT PRIMARY KEY DEFAULT NEXT VALUE FOR dbo.NoFactura,
+    FacturaID INT,
+    NFTID uniqueidentifier,
+    Cantidad INT,
+    Precio DECIMAL(18, 2),
+    TotalLinea DECIMAL(18, 2),
+	EstadoFactura INT,
+    FOREIGN KEY (FacturaID) REFERENCES Factura(FacturaID),
+    FOREIGN KEY (NFTID) REFERENCES NFT(ID),	
+);
+
+
+CREATE TABLE Usuario (
+  ID INT PRIMARY KEY,
+  NombreUsuario VARCHAR(50) UNIQUE NOT NULL,
+  CorreoElectronico VARCHAR(100) UNIQUE NOT NULL,
+  Contrasena VARCHAR(255) NOT NULL,
+  RolID INT,
+  FOREIGN KEY (RolID) REFERENCES Rol(ID)
+);
+
+CREATE TABLE Rol (
+  ID INT PRIMARY KEY,
+  NombreRol VARCHAR(50) UNIQUE NOT NULL,
+  Descripcion VARCHAR(100)
+);
+
+INSERT INTO Rol (ID, NombreRol, Descripcion) VALUES
+(1,'Administrador', 'Acceso completo al sistema'),
+(2,'Ventas', 'Acceso a realizar Ventas'),
+(3,'Reporteria', 'Acceso a realizar Reportes');
+
+CREATE TABLE UsuarioRol (
+  UsuarioID INT,
+  RolID INT,
+  FOREIGN KEY (UsuarioID) REFERENCES Usuario(ID),
+  FOREIGN KEY (RolID) REFERENCES Rol(ID),
+  PRIMARY KEY (UsuarioID, RolID)
 );
