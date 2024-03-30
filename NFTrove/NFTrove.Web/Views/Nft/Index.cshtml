@@ -4,6 +4,7 @@
     ViewData["Title"] = "Index";
 }
 
+<h1>NFT</h1>
 <div class="container">
     <div class="row mb-3">
         <div class="col-md-12 d-flex justify-content-end">
@@ -27,7 +28,7 @@
                     @Html.DisplayNameFor(model => model.Valor)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Cantidad)
+                    @Html.DisplayNameFor(model => model.CantidadInventario)
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.Imagen)
@@ -52,7 +53,7 @@
                         @Html.DisplayFor(modelItem => item.Valor)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Cantidad)
+                        @Html.DisplayFor(modelItem => item.CantidadInventario)
                     </td>
                     <td>
                         @*@Html.DisplayFor(modelItem => item.Imagen)*@

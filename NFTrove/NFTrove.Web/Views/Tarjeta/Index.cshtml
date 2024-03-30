@@ -4,11 +4,14 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>TARJETAS</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
+<div class="container">
+    <div class="row mb-3">
+        <div class="col-md-12 d-flex justify-content-end">
+            <a asp-action="Create" class="btn btn-primary">Crear Tarjeta</a>
+        </div>
+    </div>
 <table class="table">
     <thead>
         <tr>
@@ -31,9 +34,9 @@
                 @Html.DisplayFor(modelItem => item.Tipo)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                    <a asp-action="Edit" asp-route-id="@item.ID" class="btn btn-secondary" style="margin-right: 5px;">Editar</a>
+                    <a href="@Url.Action("Details", new { id = item.ID })" class="btn btn-info details-link" style="margin-right: 5px;">Detalles</a>
+                    <a asp-action="Delete" asp-route-id="@item.ID" class="btn btn-danger">Eliminar</a>
             </td>
         </tr>
 }

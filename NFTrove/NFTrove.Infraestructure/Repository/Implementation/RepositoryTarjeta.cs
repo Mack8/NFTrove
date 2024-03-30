@@ -34,12 +34,9 @@ namespace NFTrove.Infraestructure.Repository.Implementation
             }
         }
 
-        public async Task<ICollection<Tarjeta>> FindByTypeAsync(string type)
+        public async Task<ICollection<Tarjeta>> ListAsync()
         {
-            var collection = await _context
-                .Set<Tarjeta>()
-                .Where(t => t.Tipo.Contains(type))
-                .ToListAsync();
+            var collection = await _context.Set<Tarjeta>().AsNoTracking().ToListAsync();
             return collection;
         }
 
@@ -47,12 +44,6 @@ namespace NFTrove.Infraestructure.Repository.Implementation
         {
             var tarjeta = await _context.Set<Tarjeta>().FindAsync(id);
             return tarjeta!;
-        }
-
-        public async Task<ICollection<Tarjeta>> ListAsync()
-        {
-            var collection = await _context.Set<Tarjeta>().AsNoTracking().ToListAsync();
-            return collection;
         }
 
         public async Task UpdateAsync(int id, Tarjeta entity)

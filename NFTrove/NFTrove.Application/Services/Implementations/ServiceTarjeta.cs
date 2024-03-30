@@ -31,9 +31,9 @@ namespace NFTrove.Application.Services.Implementations
             await _repository.DeleteAsync(id);
         }
 
-        public async Task<ICollection<TarjetaDTO>> FindByTypeAsync(string type)
+        public async Task<ICollection<TarjetaDTO>> ListAsync()
         {
-            var list = await _repository.FindByTypeAsync(type);
+            var list = await _repository.ListAsync();
             var collection = _mapper.Map<ICollection<TarjetaDTO>>(list);
             return collection;
         }
@@ -43,13 +43,6 @@ namespace NFTrove.Application.Services.Implementations
             var @object = await _repository.FindByIdAsync(id);
             var objectMapped = _mapper.Map<TarjetaDTO>(@object);
             return objectMapped;
-        }
-
-        public async Task<ICollection<TarjetaDTO>> ListAsync()
-        {
-            var list = await _repository.ListAsync();
-            var collection = _mapper.Map<ICollection<TarjetaDTO>>(list);
-            return collection;
         }
 
         public async Task UpdateAsync(int id, TarjetaDTO dto)
