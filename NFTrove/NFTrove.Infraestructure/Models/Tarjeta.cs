@@ -9,5 +9,5 @@ public partial class Tarjeta
 
     public string? Tipo { get; set; }
 
-    public virtual ICollection<VentaNft> VentaNft { get; set; } = new List<VentaNft>();
+    public virtual ICollection<Factura> Factura { get; set; } = new List<Factura>();
 }
