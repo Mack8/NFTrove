@@ -30,7 +30,7 @@ public record NftDTO
     [Display(Name = "Cantidad")]
     [Range(0, 999999999, ErrorMessage = "El valor mínimo es {0}")]
     [Required(ErrorMessage = "{0} es requerido")]
-    public int Cantidad { get; set; }
+    public int CantidadInventario { get; set; }
 
     [Display(Name = "Imagen")]
     [Required(ErrorMessage = "{0} es requerido")]

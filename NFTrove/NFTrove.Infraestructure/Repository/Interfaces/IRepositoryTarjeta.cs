@@ -7,11 +7,10 @@ namespace NFTrove.Infraestructure.Repository.Interfaces
 {
     public interface IRepositoryTarjeta
     {
-        Task<ICollection<Tarjeta>> FindByTypeAsync(string type);
-        Task<ICollection<Tarjeta>> ListAsync();
-        Task<Tarjeta> FindByIdAsync(int id);
         Task<int> AddAsync(Tarjeta entity);
         Task DeleteAsync(int id);
+        Task<ICollection<Tarjeta>> ListAsync();
+        Task<Tarjeta> FindByIdAsync(int id);
         Task UpdateAsync(int id, Tarjeta entity);
     }
 }
