@@ -17,7 +17,7 @@ public partial class Factura
 
     public int EstadoFactura { get; set; }
 
-    public virtual Cliente? Cliente { get; set; }
+    public virtual Cliente? Cliente { get; set; } = null;
 
     public virtual ICollection<DetalleFactura> DetalleFactura { get; set; } = new List<DetalleFactura>();
 
