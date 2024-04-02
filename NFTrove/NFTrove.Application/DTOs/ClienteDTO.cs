@@ -15,14 +15,17 @@ namespace NFTrove.Application.DTOs
         [Display(Name = "Nombre")]
         [Required(ErrorMessage = "{0} es requerido")]
         [StringLength(50, ErrorMessage = "{0} debe tener como máximo {1} caracteres.")]
+
         public string Nombre { get; init; }
 
         [Display(Name = "Apellidos")]
         [StringLength(50, ErrorMessage = "{0} debe tener como máximo {1} caracteres.")]
+        [Required(ErrorMessage = "{0} es requerido")]
         public string Apellidos { get; init; }
 
         [Display(Name = "Identificación")]
         [StringLength(50, ErrorMessage = "{0} debe tener como máximo {1} caracteres.")]
+        [Required(ErrorMessage = "{0} es requerido")]
         public string Identificacion { get; init; }
 
         [Display(Name = "Correo Electrónico")]
