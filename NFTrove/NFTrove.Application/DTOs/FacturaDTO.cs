@@ -1,27 +1,32 @@
-﻿using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace NFTrove.Application.DTOs
 {
     public record FacturaDTO
     {
+        public int FacturaID { get; init; }
 
-        [Display(Name = "No Factura")]
-        [ValidateNever]
-        public int FacturaId { get; set; }
-
-
-        [Display(Name = "Tipo Tarjeta")]
-
+        [Display(Name = "Cliente ID")]
         [Required(ErrorMessage = "{0} es requerido")]
-        public int IdTarjeta { get; set; }
+        public Guid ClienteID { get; init; }
 
-        public List<DetalleFacturaDTO> ListDetalleFacturaDTO = null!;
+        [Display(Name = "Fecha de Factura")]
+        [Required(ErrorMessage = "{0} es requerida")]
+        [DataType(DataType.Date)]
+        public DateTime FechaFactura { get; init; }
 
+        [Display(Name = "Total")]
+        [Required(ErrorMessage = "{0} es requerido")]
+        [Range(0, double.MaxValue, ErrorMessage = "{0} debe ser un número positivo.")]
+        public decimal Total { get; init; }
+
+        [Display(Name = "Tarjeta ID")]
+        [Required(ErrorMessage = "{0} es requerido")]
+        public int TarjetaID { get; init; }
+
+        [Display(Name = "Estado de Factura")]
+        [Required(ErrorMessage = "{0} es requerido")]
+        public int EstadoFactura { get; init; }
     }
 }
