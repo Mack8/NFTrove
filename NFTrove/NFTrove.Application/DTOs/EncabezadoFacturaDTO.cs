@@ -8,20 +8,26 @@ using System.Threading.Tasks;
 
 namespace NFTrove.Application.DTOs
 {
-    public record FacturaDTO
+    public record EncabezadoFacturaDTO
     {
-
         [Display(Name = "No Factura")]
         [ValidateNever]
         public int FacturaId { get; set; }
 
 
-        [Display(Name = "Tipo Tarjeta")]
+        [Display(Name = "No Cliente")]
+        public Guid ClienteId { get; set; }
+
 
         [Required(ErrorMessage = "{0} es requerido")]
-        public int IdTarjeta { get; set; }
+        [Display(Name = "No Tarjeta")]
+        public int TarjetaId { get; set; }
 
-        public List<DetalleFacturaDTO> ListDetalleFacturaDTO = null!;
+        [Display(Name = "Estado de la Factura")]
+        public int EstadoFactura { get; set; }
+
+
+        public List<DetalleFacturaDTO> ListDetalleFactura = null!;
 
     }
 }

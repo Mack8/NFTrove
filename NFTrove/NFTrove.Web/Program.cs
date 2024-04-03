@@ -38,6 +38,8 @@ builder.Services.AddTransient<IRepositoryPais, RepositoryPais>();
 builder.Services.AddTransient<IServicePais, ServicePais>();
 builder.Services.AddTransient<IServiceNft, ServiceNft>();
 builder.Services.AddTransient<IRepositoryNft, RepositoryNft>();
+builder.Services.AddTransient<IRepositoryFactura, RepositoryFactura>();
+builder.Services.AddTransient<IServiceFactura, ServiceFactura>();
 
 
 builder.Services.AddAutoMapper(config =>
@@ -46,6 +48,7 @@ builder.Services.AddAutoMapper(config =>
     config.AddProfile<TarjetaProfile>();
     config.AddProfile<PaisProfile>();
     config.AddProfile<NftProfile>();
+    config.AddProfile<FacturaProfile>();
 });
 
 

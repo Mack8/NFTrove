@@ -19,7 +19,7 @@ public partial class DetalleFactura
 
     public int? EstadoFactura { get; set; }
 
-    public virtual Factura? Factura { get; set; }
+    public virtual EncabezadoFactura IdFacturaNavigation { get; set; } = null!;
 
-    public virtual Nft? Nft { get; set; }
+    public virtual Nft IdProductoNavigation { get; set; } = null!;
 }

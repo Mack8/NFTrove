@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace NFTrove.Infraestructure.Models;
 
-public partial class Factura
+public partial class EncabezadoFactura
 {
     public int FacturaId { get; set; }
 

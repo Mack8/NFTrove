@@ -17,7 +17,7 @@ public partial class Cliente
 
     public int? PaisId { get; set; }
 
-    public virtual ICollection<Factura> Factura { get; set; } = new List<Factura>();
+    public virtual ICollection<EncabezadoFactura> EncabezadoFactura { get; set; } = new List<EncabezadoFactura>();
 
     public virtual Pais? Pais { get; set; }
 

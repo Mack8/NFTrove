@@ -1,0 +1,75 @@
+﻿@model IEnumerable<NFTrove.Application.DTOs.EncabezadoFacturaDTO>
+
+div id="myCard">
+<div class="card">
+    <div class="card-header">
+        Detalle
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-striped table-hover table-bordered text-center" id="detalleFactura">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.FacturaId)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.ClienteId)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.TarjetaId)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.EstadoFactura)
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{
+                        if (Model != null)
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.FacturaId)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.ClienteId)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.TarjetaId)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.EstadoFactura)
+                                    </td>
+                                    <td>
+                                        @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                                        @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                                        @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align="center">
+                                    </td>
+                                    <td align="center">
+                                    </td>
+                                    <td align="left">
+                                    </td>
+                                    <td align="right">
+                                    </td>
+                                    <td align="right">
+                                    </td>
+                                    <td align="right">
+                                    </td>
+                                    <td align="right">
+                                    </td>
+                                </tr>
+                            }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</div>
