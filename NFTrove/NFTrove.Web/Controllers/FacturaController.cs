@@ -11,17 +11,18 @@ public class FacturaController : Controller
     private readonly IServiceNft _serviceNft;
     private readonly IServiceTarjeta _serviceTarjeta;
     private readonly IServiceFactura _serviceFactura;
+    private readonly IServiceCliente _serviceCliente;
 
-   
 
     public FacturaController(IServiceNft servicoNft,
                             IServiceTarjeta servicoTarjeta,
-                            IServiceFactura serviceFactura)
+                            IServiceFactura serviceFactura,
+                            IServiceCliente serviceCliente)
     {
         _serviceNft = servicoNft;
         _serviceTarjeta = servicoTarjeta;
         _serviceFactura = serviceFactura;
-        
+        _serviceCliente = serviceCliente;
     }
 
     public async Task<IActionResult> Index()
@@ -29,10 +30,19 @@ public class FacturaController : Controller
 
         var nextReceiptNumber = await _serviceFactura.GetNextReceiptNumber();
         ViewBag.CurrentReceipt = nextReceiptNumber;
-        var collection = await _serviceTarjeta.ListAsync();
-        ViewBag.ListTarjeta = collection;
 
-        // Clear CarShopping
+        // Obtener la lista de tarjetas
+        var collectionTarjeta = await _serviceTarjeta.ListAsync();
+        ViewBag.ListTarjeta = collectionTarjeta;
+
+        // Obtener la lista de clientes con nombre y apellido concatenados
+        var collectionCliente = await _serviceCliente.ListAsync();
+        ViewBag.ListCliente = collectionCliente.Select(c => new {
+            ID = c.ID,
+            NombreCompleto = $"{c.Nombre} {c.Apellidos}"
+        }).ToList();
+
+        // Limpiar CarShopping
         TempData["CartShopping"] = null;
         TempData.Keep();
 

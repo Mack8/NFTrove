@@ -35,15 +35,7 @@ namespace NFTrove.Infraestructure.Repository.Implementation
             await Task.FromResult(1);
         }
 
-        public async Task<ICollection<Cliente>> FindByDescriptionAsync(string description)
-        {
-            var collection = await _context
-                                         .Set<Cliente>()
-                                         .Where(p => p.Nombre.Contains(description))
-                                         .ToListAsync();
-            return collection;
-        }
-
+       
         public async Task<Cliente> FindByIdAsync(string identificacion)
         {
             var cliente = await _context.Set<Cliente>()
@@ -67,6 +59,16 @@ namespace NFTrove.Infraestructure.Repository.Implementation
             @object.PaisId = entity.PaisId;
             @object.Identificacion = entity.Identificacion;
             await _context.SaveChangesAsync();
+        }
+
+        public async Task<ICollection<Cliente>> FindByDescriptionAsync(string description)
+        {
+            description = description.Replace(' ', '%');
+            description = "%" + description + "%";
+            FormattableString sql = $@"select * from Cliente where Nombre+Apellidos like  {description}  ";
+
+            var collection = await _context.Cliente.FromSql(sql).AsNoTracking().ToListAsync();
+            return collection;
         }
 
     }

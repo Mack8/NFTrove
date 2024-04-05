@@ -165,21 +165,21 @@
         // Busca el cliente por nombre+apellido1+apellido2 //
         /////////////////////////////////////////////////////
 
-        $("#IdCliente").autocomplete({
+        $("#ClienteId").autocomplete({
             source: function (request, response) {
-                var idCliente = $("#IdCliente").val();
+                var idCliente = $("#ClienteId").val();
                 //debugger;
                 console.log(idCliente);
                 $.ajax({
                     type: "GET",
                     url: "/Cliente/GetClienteByName",
                     dataType: "json",
-                    data: { filtro: idCliente },
+                    data: { filtro: idCliente }, // Aquí se cambió "IdCliente" a "idCliente"
                     success: function (data) {
                         response($.map(data, function (item) {
                             console.log(item);
                             //debugger;
-                            return { label: item.nombre + " " + item.apellido1 + " " + item.apellido2, value: item.idCliente };
+                            return { label: item.nombre + " " + item.apellidos, value: item.identificacion };
                         }));
                     },
                     error: function (xhr, status, error) {
@@ -191,13 +191,14 @@
                 });
             },
             select: function (event, ui) {
-                  
-                $("#IdCliente").val(ui.item.value);
+
+                $("#ClienteId").val(ui.item.value);
                 $("#NombreCliente").html(ui.item.label)
 
                 return false;
             }
         });
+        
     </script>
      
 

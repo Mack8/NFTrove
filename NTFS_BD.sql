@@ -56,21 +56,21 @@ CREATE TABLE CLIENTE (
     Identificacion VARCHAR(50),
     CorreoElectronico VARCHAR(100),
     PaisID INT,
-    FOREIGN KEY (PaisID) REFERENCES Pais(ID)
+    FOREIGN KEY (PaisID) REFERENCES PAIS(ID) -- Corregido el nombre de la tabla
 );
 
 -- Insertar datos de ejemplo en la tabla PAIS
 INSERT INTO PAIS (ID, ISO, Descripcion) VALUES
 (1, 'USA', 'Estados Unidos'),
 (2, 'GBR', 'Reino Unido'),
-(3, 'MEX', 'MÈxico'),
-(4, 'ESP', 'EspaÒa'),
-(5, 'CAN', 'Canad·');
+(3, 'MEX', 'M√©xico'),
+(4, 'ESP', 'Espa√±a'),
+(5, 'CAN', 'Canad√°');
 
 -- Insertar datos de ejemplo en la tabla CLIENTE
 INSERT INTO CLIENTE (Nombre, Apellidos, Identificacion, CorreoElectronico, PaisID) VALUES
-('Juan', 'PÈrez', '123456789', 'juan@example.com', 1),
-('MarÌa', 'GarcÌa', '987654321', 'maria@example.com', 3),
+('Juan', 'P√©rez', '123456789', 'juan@example.com', 1),
+('Mar√≠a', 'Garc√≠a', '987654321', 'maria@example.com', 3),
 ('David', 'Smith', '555555555', 'david@example.com', 1);
 
 -- Crear la tabla TARJETA
@@ -98,23 +98,23 @@ CREATE TABLE PROPIETARIO_NFT (
     FOREIGN KEY (ClienteID) REFERENCES CLIENTE(ID)
 );
 
--- Crear la tabla Factura
-CREATE TABLE Factura (
+-- Crear la tabla ENCABEZADOFACTURA
+CREATE TABLE ENCABEZADOFACTURA (
     FacturaID INT PRIMARY KEY,
     ClienteID UNIQUEIDENTIFIER,
     FechaFactura DATE,
     Total DECIMAL(18, 2),
     TarjetaID INT NOT NULL,
     EstadoFactura INT NOT NULL,
-    FOREIGN KEY (ClienteID) REFERENCES Cliente(ID),
-    FOREIGN KEY (TarjetaID) REFERENCES Tarjeta(ID)
+    FOREIGN KEY (ClienteID) REFERENCES CLIENTE(ID),
+    FOREIGN KEY (TarjetaID) REFERENCES TARJETA(ID)
 );
 
 -- Crear la secuencia NoFactura
 CREATE SEQUENCE NoFactura START WITH 1;
 
--- Crear la tabla DetalleFactura
-CREATE TABLE DetalleFactura (
+-- Crear la tabla DETALLEFACTURA
+CREATE TABLE DETALLEFACTURA (
     DetalleID INT PRIMARY KEY DEFAULT NEXT VALUE FOR NoFactura,
     FacturaID INT,
     NFTID UNIQUEIDENTIFIER,
@@ -122,7 +122,7 @@ CREATE TABLE DetalleFactura (
     Precio DECIMAL(18, 2),
     TotalLinea DECIMAL(18, 2),
     EstadoFactura INT,
-    FOREIGN KEY (FacturaID) REFERENCES Factura(FacturaID),
+    FOREIGN KEY (FacturaID) REFERENCES ENCABEZADOFACTURA(FacturaID),
     FOREIGN KEY (NFTID) REFERENCES NFT(ID)    
 );
 

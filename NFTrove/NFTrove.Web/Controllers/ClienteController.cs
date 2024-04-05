@@ -102,7 +102,13 @@ namespace NFTrove.Web.Controllers
             return RedirectToAction("Index");
         }
 
-       
+        public IActionResult GetClienteByName(string filtro)
+        {
+
+            var collections = _serviceCliente.FindByDescriptionAsync(filtro).GetAwaiter().GetResult();
+
+            return Json(collections);
+        }
 
 
     }
