@@ -81,3 +81,28 @@ git clone https://github.com/Mack8/NFTrove.git
 cd NFTrove/backend
 
 ```
+
+#### 2. **Instalar dependencias**
+```bash
+dotnet restore
+```
+
+#### 3. **Configurar variables de entorno**
+Crea un archivo appsettings.json con la configuración:
+```bash
+{
+  "ConnectionStrings": {
+    "DefaultConnection": "Server=localhost;Database=NFTroveDB;User Id=usuario;Password=contraseña;"
+  },
+  "JwtSettings": {
+    "Secret": "clave_secreta_para_jwt"
+  },
+  "EmailSettings": {
+    "SmtpServer": "smtp.gmail.com",
+    "SmtpPort": 587,
+    "SenderEmail": "tu_correo@gmail.com",
+    "SenderPassword": "tu_contraseña"
+  }
+}
+
+```
